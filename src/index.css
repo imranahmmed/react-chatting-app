@@ -6,6 +6,25 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+a {
+  color: #ea6c00;
+  font-weight: 500;
+}
+.w-full {
+  width: 100%;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+.mt-15{
+  margin-top: 15px;
+}
+.mt-20{
+  margin-top: 20px;
+}
+
 .regHeading {
   margin: 0;
   font-size: 34.4px;
@@ -65,7 +84,7 @@ body {
   cursor: pointer;
   color: #b6b8d3;
 }
-.passEyeIconShow{
+.passEyeIconShow {
   color: #11175d;
 }
 .registrationFormContainer fieldset {
@@ -111,9 +130,34 @@ body {
   margin-top: 40px !important;
   margin-bottom: 20px !important;
 }
-.successPopUp{
-  position:absolute;
+.successPopUp {
+  position: absolute;
   top: 20px;
   left: 20px;
   z-index: 1;
+}
+
+.modalHeader {
+  border-bottom: 1px solid #d0d8e7;
+  padding: 10px 15px;
+  color: #11175d;
+  font-family: "Nunito", sans-serif;
+}
+.modalBody {
+  padding: 15px 15px;
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.modalFooter {
+  font-family: "Nunito", sans-serif;
+  border-top: 1px solid #d0d8e7;
+  padding: 15px 15px;
+  color: #11175d;
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
 }

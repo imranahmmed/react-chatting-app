@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Heading from '../components/Heading';
 import Img from '../components/Img';
@@ -15,7 +15,7 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ThreeDots } from 'react-loader-spinner';
-
+import { useSelector } from 'react-redux';
 
 const regSubmitButton = styled(Button)({
     width: '100%',
@@ -61,6 +61,7 @@ const loaderButton = styled(Button)({
 const Registration = () => {
     const auth = getAuth();
     const navigate = useNavigate();
+    const userAuthData = useSelector(state => state)
 
     let [formData, setFormData] = useState({
         email: "",
@@ -74,7 +75,7 @@ const Registration = () => {
     });
 
     let [showPass, setShowPass] = useState(false)
-    let [showSuccess, setShowSuccess] = useState(false)
+    // let [showSuccess, setShowSuccess] = useState(false)
     let [loader, setLoader] = useState(false)
 
 
@@ -151,10 +152,12 @@ const Registration = () => {
                 }
             });
         }
-
-        // setFormData({ ...formData, email: "" })
     }
-
+    useEffect(() => {
+        if (userAuthData.authData.userInfo) {
+            navigate("/home")
+        }
+    }, [])
 
 
     return (

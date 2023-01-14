@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '@mui/material/Button';
 import CButton from '../components/CButton';
 import { styled } from '@mui/material/styles';
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { activeUser } from '../slices/authSlice';
 
 const logOutButton = styled(Button)({
     width: '100%',
@@ -32,10 +33,21 @@ const logOutButton = styled(Button)({
 const Home = () => {
     const auth = getAuth();
     const navigate = useNavigate();
+    const userAuthData = useSelector(state => state)
+    const dispatch = useDispatch(state => state)
+
+    useEffect(() => {
+        if (!userAuthData.authData.userInfo) {
+            navigate("/login")
+        }
+    }, [])
+
 
 
     let handleLogOut = () => {
         signOut(auth).then(() => {
+            dispatch(activeUser(null))
+            localStorage.removeItem("userInfo")
             navigate("/login")
         }).catch((error) => {
             // An error happened.
